@@ -5,13 +5,15 @@ import numpy as np
 
 data = keras.datasets.fashion_mnist
 
-(train_imgs, train_labels), (test_imgs, test_labels) = data.load()
+(train_imgs, train_labels), (test_imgs, test_labels) = data.load_data()
 
-train_imgs /= 255.0
-test_imgs /= 255.0
+class_names = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat', 'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
+
+train_imgs = train_imgs / 255.0
+test_imgs = test_imgs / 255.0
 
 model = keras.Sequential([
-	keras.layers.Flatten((28,28)),
+	keras.layers.Flatten(input_shape=(28,28)),
 	keras.layers.Dense(128, activation='relu'),
 	keras.layers.Dense(10, activation='softmax')])
 
